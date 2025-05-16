@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smash Burger</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- TOP NAVBAR -->
+  <header class="top-nav">
+    <div class="container">
+      <div class="logo">SMASH</div>
+      <nav class="main-menu">
+        <ul>
+          <li><a href="#hero"><span class="icon">🏠</span> Home</a></li>
+          <li><a href="#menu"><span class="icon">🍔</span> Menu</a></li>
+          <li><a href="#about"><span class="icon">ℹ️</span> About</a></li>
+          <li><a href="#contact"><span class="icon">✉️</span> Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cart-indicator">
+        🛒 <span id="cart-count">0</span>
+      </div>
+      <button class="burger-btn" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="dropdown-menu">
+      <ul>
+        <li><a href="#hero"><span class="icon">🏠</span> Home</a></li>
+        <li><a href="#menu"><span class="icon">🍔</span> Menu</a></li>
+        <li><a href="#about"><span class="icon">ℹ️</span> About</a></li>
+        <li><a href="#contact"><span class="icon">✉️</span> Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1>Ultimate Smash Burger</h1>
+      <p>Fast. Fresh. Fantastic.</p>
+      <button class="btn" onclick="window.location='#menu'">Explore Menu</button>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <h2>Our Menu</h2>
+      <div class="menu-grid">
+        <!-- Burger items -->
+        <div class="menu-item">
+          <div class="img-wrap">
+            <img src="https://picsum.photos/400/300?burger1" alt="Classic Smash" />
+          </div>
+          <div class="item-info">
+            <h3>Classic Smash</h3>
+            <p>Juicy beef patty, melted cheese, crisp lettuce.</p>
+            <button class="btn small add-to-cart" data-name="Classic Smash" data-price="8.99">Add to Cart</button>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="img-wrap">
+            <img src="https://picsum.photos/400/300?burger2" alt="Double Trouble" />
+          </div>
+          <div class="item-info">
+            <h3>Double Trouble</h3>
+            <p>Two patties, cheddar, grilled onions, spicy mayo.</p>
+            <button class="btn small add-to-cart" data-name="Double Trouble" data-price="12.99">Add to Cart</button>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="img-wrap">
+            <img src="https://picsum.photos/400/300?burger3" alt="Vegan Delight" />
+          </div>
+          <div class="item-info">
+            <h3>Vegan Delight</h3>
+            <p>Plant-based patty, avocado, vegan cheese, lettuce.</p>
+            <button class="btn small add-to-cart" data-name="Vegan Delight" data-price="10.29">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-phone">
+      <div class="cart-header">
+        Your Cart 🛒 <span id="modal-count">0</span>
+        <button id="close-cart" class="remove-btn" aria-label="Close Cart">✖</button>
+      </div>
+      <ul id="modal-items" class="cart-items">
+        <!-- Items injected with JS, each <li> will include a remove button -->
+      </ul>
+      <div class="cart-total">Total: $<span id="modal-total">0.00</span></div>
+      <button id="checkout-btn" class="btn checkout">Checkout</button>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Smash Burger is your ultimate destination for delicious, handcrafted smash burgers made fresh and served fast.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="bottom-nav">
+    <div class="container">
+      <nav class="footer-menu">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2025 Smash Burger. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

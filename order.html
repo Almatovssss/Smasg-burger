@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – Smash Burger</title>
+  <link rel="stylesheet" href="order.css" />
+</head>
+<body>
+  <header class="order-header">
+    <div class="container">
+      <h1>Smash Burger Checkout</h1>
+    </div>
+  </header>
+
+  <main class="order-main">
+    <section class="summary">
+      <div class="container">
+        <h2>Your Order</h2>
+        <ul id="order-items" class="order-list">
+          <!-- Dynamic items injected via JS -->
+        </ul>
+        <div class="total">
+          <strong>Total:</strong> $<span id="order-total">0.00</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="payment">
+      <div class="container">
+        <h2>Payment Details</h2>
+        <form id="checkout-form">
+          <label>
+            Cardholder Name
+            <input type="text" name="cardholder" placeholder="John Doe" required />
+          </label>
+          <label>
+            Card Number
+            <input type="text" name="cardnumber" placeholder="1234 5678 9012 3456" pattern="\d{4} \d{4} \d{4} \d{4}" required />
+          </label>
+          <div class="row">
+            <label>
+              Expiry (MM/YY)
+              <input type="text" name="expiry" placeholder="MM/YY" pattern="\d{2}/\d{2}" required />
+            </label>
+            <label>
+              CVC
+              <input type="text" name="cvc" placeholder="123" pattern="\d{3}" required />
+            </label>
+          </div>
+          <button type="submit" class="btn-pay">Pay Now</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="order-footer">
+    <div class="container">
+      &copy; 2025 Smash Burger. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="order.js"></script>
+</body>
+</html>
