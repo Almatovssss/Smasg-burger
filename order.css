@@ -1,4 +1,4 @@
-/* order.css – Minimal 2025 style with dynamic order list */
+
 
 :root {
   --white: #ffffff;
@@ -89,7 +89,7 @@ header.order-header h1 {
   border-top: 1px solid rgba(0,0,0,0.1);
 }
 
-/* Payment form */
+
 .payment {
   margin-top: 32px;
 }
@@ -130,14 +130,13 @@ header.order-header h1 {
   outline: none;
 }
 
-/* Two-column row */
 .row {
   display: flex; gap: 16px;
 }
 
 .row label { flex: 1; }
 
-/* Pay button */
+
 .btn-pay {
   width: 100%;
   margin-top: 24px;
@@ -165,7 +164,6 @@ header.order-header h1 {
   color: rgba(0,0,0,0.6);
 }
 
-/* Scrollbar styling */
 .order-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -179,7 +177,7 @@ header.order-header h1 {
   background: transparent;
 }
 
-/* Remove button (✖) for cart items */
+
 .remove-btn {
   background: transparent;
   border: none;
