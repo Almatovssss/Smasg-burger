@@ -97,3 +97,27 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCartCount();
   renderModal();
 });
+document.getElementById("checkout-btn").addEventListener("click", () => {
+  const cartItems = [...document.querySelectorAll(".cart-items li")].map(item => {
+    return {
+      name: item.querySelector(".item-name").innerText,
+      price: parseFloat(item.querySelector(".item-price").innerText.replace('$', '')),
+      quantity: parseInt(item.querySelector(".item-quantity").innerText)
+    };
+  });
+
+  fetch("https://792eebd8-751d-4107-bda0-4ca0b500e393-00-38phs9fyuh4ph.picard.replit.dev/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ items: cartItems })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      // Bu yerda cart-ni tozalash va boshqa ishlar qilinishi mumkin
+    })
+    .catch(err => {
+      console.error("Xatolik:", err);
+      alert("Buyurtma yuborishda xatolik yuz berdi");
+    });
+});
