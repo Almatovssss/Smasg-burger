@@ -1,4 +1,4 @@
-// order.js – dynamic checkout page
+
 
 const CART_KEY = 'smashBurgerCart';
 
