@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
   // 1. Dropdown menu logic
   const burgerBtn = document.querySelector(".burger-btn");
@@ -37,8 +35,27 @@ document.addEventListener("DOMContentLoaded", function () {
     let sum = 0;
     cart.forEach((item, idx) => {
       const li = document.createElement('li');
-      li.textContent = `${item.name} — $${item.price.toFixed(2)}`;
-      // remove button
+
+      // Item name, price and quantity (quantity = 1 by default)
+      const nameSpan = document.createElement('span');
+      nameSpan.classList.add('item-name');
+      nameSpan.innerText = item.name;
+
+      const priceSpan = document.createElement('span');
+      priceSpan.classList.add('item-price');
+      priceSpan.innerText = item.price.toFixed(2);
+
+      const quantitySpan = document.createElement('span');
+      quantitySpan.classList.add('item-quantity');
+      quantitySpan.innerText = 1;  // hozircha 1 dona
+
+      li.appendChild(nameSpan);
+      li.appendChild(document.createTextNode(' — $'));
+      li.appendChild(priceSpan);
+      li.appendChild(document.createTextNode(' x '));
+      li.appendChild(quantitySpan);
+
+      // Remove button
       const remBtn = document.createElement('button');
       remBtn.classList.add('remove-btn');
       remBtn.innerText = '✖';
@@ -49,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderModal();
       });
       li.appendChild(remBtn);
+
       modalItemsEl.appendChild(li);
       sum += item.price;
     });
@@ -56,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modalTotalEl.textContent = sum.toFixed(2);
   }
 
-  // Handle Add to Cart buttons + show modal
+  // Add to Cart buttons
   document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', () => {
       const name = btn.dataset.name;
@@ -80,9 +98,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Checkout navigation
+  // Checkout navigation & send order to backend
   checkoutBtn.addEventListener('click', () => {
-    window.location.href = 'order.html';
+    const cartItems = getCart().map(item => ({
+      name: item.name,
+      price: item.price,
+      quantity: 1 // hozircha faqat 1 ta har bir buyurtma
+    }));
+
+    fetch("https://792eebd8-751d-4107-bda0-4ca0b500e393-00-38phs9fyuh4ph.picard.replit.dev/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: cartItems })
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        // Cart-ni tozalaymiz:
+        localStorage.removeItem(CART_KEY);
+        updateCartCount();
+        renderModal();
+        cartModal.classList.remove('open');
+      })
+      .catch(err => {
+        console.error("Xatolik:", err);
+        alert("Buyurtma yuborishda xatolik yuz berdi");
+      });
   });
 
   // Close modal
@@ -96,28 +137,4 @@ document.addEventListener("DOMContentLoaded", function () {
   // Init counts
   updateCartCount();
   renderModal();
-});
-document.getElementById("checkout-btn").addEventListener("click", () => {
-  const cartItems = [...document.querySelectorAll(".cart-items li")].map(item => {
-    return {
-      name: item.querySelector(".item-name").innerText,
-      price: parseFloat(item.querySelector(".item-price").innerText.replace('$', '')),
-      quantity: parseInt(item.querySelector(".item-quantity").innerText)
-    };
-  });
-
-  fetch("https://792eebd8-751d-4107-bda0-4ca0b500e393-00-38phs9fyuh4ph.picard.replit.dev/order", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items: cartItems })
-  })
-    .then(res => res.json())
-    .then(data => {
-      alert(data.message);
-      // Bu yerda cart-ni tozalash va boshqa ishlar qilinishi mumkin
-    })
-    .catch(err => {
-      console.error("Xatolik:", err);
-      alert("Buyurtma yuborishda xatolik yuz berdi");
-    });
 });
